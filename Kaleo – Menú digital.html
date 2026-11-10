@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kaleo – Poke, Salads & Coffee</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Poppins:wght@400;500;600&display=swap">
+<style>
+:root{--o:#ff7a1f;--t:#1fa6c4;--g:#4fae14;--bg:#f7f5f0;--cd:#fff;--tx:#1b1b1b;--mu:#5d5d5d;--ln:#e4e0d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#14171a;--cd:#1f2429;--tx:#f1f1f1;--mu:#a5acb3;--ln:#2e353b;--t:#4cc9e4;--g:#8be04a}}
+:root[data-theme=dark]{--bg:#14171a;--cd:#1f2429;--tx:#f1f1f1;--mu:#a5acb3;--ln:#2e353b;--t:#4cc9e4;--g:#8be04a}
+html{scroll-padding-top:70px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 15px/1.45 Poppins,system-ui,sans-serif;padding-bottom:90px}
+header{background:var(--o);color:#fff;padding:26px 18px 18px}
+h1{font:400 clamp(40px,12vw,64px)/.95 "Bagel Fat One",Poppins,sans-serif;margin:0;display:flex;flex-wrap:wrap;gap:0 .14em}
+h1 span{display:inline-block;animation:pop .6s cubic-bezier(.3,1.6,.5,1) both}
+h1 span:nth-child(2){animation-delay:.12s}
+header p{margin:8px 0 0;font-weight:500}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;gap:8px;overflow-x:auto;padding:10px 14px;border-bottom:1px solid var(--ln);scrollbar-width:none}
+nav button{flex:none;border:2px solid var(--t);background:none;color:var(--tx);font:500 14px Poppins,sans-serif;padding:7px 14px;border-radius:99px;cursor:pointer;transition:.2s}
+nav button.on{background:var(--t);color:#fff;transform:scale(1.06)}
+main{max-width:640px;margin:0 auto;padding:6px 18px}
+.note{margin:14px 0 4px;padding:10px 12px;border-left:5px solid var(--g);background:var(--cd);font-size:13.5px;color:var(--mu);display:flex;gap:10px;align-items:center;justify-content:space-between}
+.note button{flex:none;border:0;background:var(--g);color:#fff;font:600 13px Poppins,sans-serif;padding:7px 11px;border-radius:8px;cursor:pointer}
+.it{display:flex;gap:12px;justify-content:space-between;align-items:flex-end;padding:15px 0;border-bottom:1px solid var(--ln);animation:up .35s ease both;animation-delay:calc(var(--i)*35ms)}
+.it h3{margin:0;font:600 16.5px Poppins,sans-serif;color:var(--o)}
+.it p{margin:3px 0 0;font-size:13.5px;color:var(--mu)}
+.pr{font-weight:600;color:var(--t);margin-top:4px}
+.ctl{flex:none;display:flex;align-items:center;gap:8px}
+.add{border:0;background:var(--o);color:#fff;font:600 14px Poppins,sans-serif;padding:9px 16px;border-radius:10px;cursor:pointer}
+.add:active,.q:active{transform:scale(.9)}
+.q{width:34px;height:34px;border-radius:50%;border:2px solid var(--o);background:none;color:var(--o);font:600 18px/1 Poppins,sans-serif;cursor:pointer;transition:transform .12s}
+.n{min-width:18px;text-align:center;font-weight:600}
+.bump{animation:bump .3s}
+#fab{position:fixed;left:14px;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:612px;margin:auto;z-index:8;border:0;background:var(--g);color:#fff;font:600 16px Poppins,sans-serif;padding:15px 18px;border-radius:16px;display:flex;justify-content:space-between;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.25);transform:translateY(140%);transition:transform .4s cubic-bezier(.3,1.4,.5,1)}
+#fab.show{transform:none}
+#sh{position:fixed;inset:0;z-index:20;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:.3s}
+#sh.open{opacity:1;pointer-events:auto}
+#pn{position:absolute;left:0;right:0;bottom:0;max-width:640px;margin:auto;max-height:88%;overflow:auto;background:var(--bg);border-radius:22px 22px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.9,.3,1)}
+#sh.open #pn{transform:none}
+#pn h2{font:400 28px "Bagel Fat One",Poppins,sans-serif;color:var(--o);margin:0 0 6px}
+.ln{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--ln)}
+.ln b{font-weight:500}
+.tot{display:flex;justify-content:space-between;font:600 19px Poppins,sans-serif;padding:14px 0}
+input,textarea,select{width:100%;margin:5px 0;padding:11px;border:1.5px solid var(--ln);border-radius:10px;background:var(--cd);color:var(--tx);font:400 15px Poppins,sans-serif}
+#send{width:100%;margin-top:8px;border:0;background:#25d366;color:#fff;font:600 16px Poppins,sans-serif;padding:15px;border-radius:14px;cursor:pointer}
+#cl{float:right;border:0;background:none;color:var(--mu);font-size:26px;cursor:pointer}
+.em{color:var(--mu);padding:20px 0}
+@keyframes pop{from{transform:translateY(40px) scale(.6) rotate(-6deg);opacity:0}}
+@keyframes up{from{transform:translateY(14px);opacity:0}}
+@keyframes bump{50%{transform:scale(1.25)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body>
+<header><h1><span>Kaleo</span><span>Menú</span></h1><p>Poke, Salads &amp; Coffee · Arma tu pedido y envíalo por WhatsApp</p></header>
+<nav id="nv"></nav>
+<main id="ls"></main>
+<button id="fab"><span id="fc">0 productos</span><span id="ft">$0.00</span></button>
+<div id="sh"><div id="pn">
+<button id="cl" aria-label="Cerrar">×</button><h2>Tu pedido</h2>
+<div id="ct"></div>
+<div class="tot"><span>Total</span><span id="tt"></span></div>
+<input id="nm" placeholder="Tu nombre" autocomplete="name">
+<select id="tp"><option>Para recoger</option><option>A domicilio</option></select>
+<textarea id="nt" rows="2" placeholder="Notas: leche a elegir, sabor de proteína, sin ingredientes…"></textarea>
+<button id="send">Enviar pedido por WhatsApp</button>
+</div></div>
+<script>
+const COMBO="Hazlo combo: +$40 té negro + galleta. ";
+const D=[
+["🥣","Poke",COMBO,[
+["Tuna",220,"Atún fresco, arroz jazmín, pepino, zanahoria, aguacate, ajonjolí, salsa anguila y aderezo chipotle."],
+["Tuna Spicy",220,"Atún fresco, arroz jazmín, pepino, zanahoria, aguacate, crispy onion, ajonjolí y aderezo mayo spicy."],
+["Teriyaki",200,"Pechuga teriyaki, arroz jazmín, pepino, zanahoria, tampico, ajonjolí y aderezo chipotle."],
+["Korean BBQ",200,"Pechuga spicy, arroz jazmín, pepino, zanahoria, cebollín y ajonjolí."],
+["Fresh",200,"Pechuga, arroz jazmín, pepino, zanahoria, cebollín, aguacate, ajonjolí y salsa cilantro."],
+["Texas",200,"Pechuga, arroz jazmín, pepino, zanahoria, aguacate, bacon bites, cebollín, mayo spicy y ajonjolí."],
+["Mexican Bowl",200,"Pechuga, arroz jazmín, morrón, bacon bites, crispy onion, tomate cherry, aguacate, elote, mayo spicy y ajonjolí."],
+["Griego Bowl",200,"Pechuga, arroz jazmín, cebolla morada, aceituna negra, pepino, aguacate, tomate cherry, ajonjolí y aderezo chipotle."],
+["Pechuga chipotle",200,"Pechuga, arroz jazmín, pepino, zanahoria, cebolla morada, morrón, aguacate, cebollín, ajonjolí y aderezo chipotle."]]],
+["🌯","Wraps",COMBO,[
+["Kale",145,"Tortilla chipotle, pechuga, lechuga, pepino, queso panela, cebolla morada, tocino y aderezo chipotle."],
+["Buffalo",145,"Tortilla chipotle, pechuga búfalo, lechuga, pepino, cebolla morada, elote, queso mozzarella y aderezo ranch."],
+["Blondie",145,"Tortilla integral, pechuga, lechuga, pepino, morrón, crispy onion, aguacate, queso mozzarella y aderezo chipotle."],
+["Fresh",145,"Tortilla cilantro, jamón, lechuga, pepino, aguacate, queso panela, elote y aderezo cilantro."],
+["Deli",145,"Tortilla integral, pechuga, lechuga, pepino, morrón, aceituna negra, queso parmesano y aderezo cilantro."],
+["Avocado",145,"Tortilla espinaca, pechuga, pepino, lechuga, aguacate, morrón, bacon bites, tomate cherry, crispy onion y mayo spicy."],
+["Griego",145,"Tortilla integral, pechuga, lechuga, pepino, morrón, cebolla morada, aguacate, queso mozzarella, aceituna negra y ranch."]]],
+["🥗","Ensalada",COMBO,[
+["Kale",145,"Pechuga, lechuga, pasta, panela, tomate cherry, tocino, cebolla morada y aderezo chipotle."],
+["Buffalo",145,"Pechuga búfalo, lechuga, cebolla morada, mozzarella, elote, zanahoria, crotones y aderezo ranch."],
+["Healthy",145,"Pechuga, lechuga, tomate cherry, morrón, mozzarella, crotones, jamón y aderezo ranch."],
+["Cesar",145,"Pechuga, lechuga, pepino, morrón, aceituna negra, parmesano, pasta, tomate cherry y aderezo cilantro."],
+["Mexicana",145,"Pechuga, lechuga, pepino, morrón, bacon bites, crispy onion, aguacate, mozzarella, pasta y aderezo chipotle."],
+["Griega",145,"Pechuga, lechuga, pepino, morrón, cebolla morada, aguacate, tomate cherry, mozzarella, pasta, aceituna negra y ranch."],
+["Blondie",145,"Pechuga, lechuga, pepino, morrón, crispy onion, aguacate, mozzarella, bacon bites, pasta y aderezo chipotle."]]],
+["🥪","Sandwich y más",COMBO,[
+["Sandwich",99,"Jamón o pechuga a elegir, queso mozzarella, pepino, cebolla morada, tomate cherry, aguacate y aderezo chipotle."],
+["Boneless (Buffalo / BBQ / Mayo Spicy)",165,"Horneados. Lechuga, zanahoria, pepino, ajonjolí y aderezo ranch."],
+["Galleta",25,""]]],
+["☕","Café","",[
+["Americano",75,"Shot espresso, agua, endulzante y hielo."],
+["Regular",100,"Shot espresso, leche de su elección, endulzante y hielo."],
+["Dirty Chai Latte",115,"Shot espresso, leche de su elección, té chai, endulzante y hielo."],
+["Cinnamon Roll",100,"Shot espresso, leche, azúcar morena, canela, vainilla, caramelo y hielo."],
+["Caramel Macchiato",100,"Shot espresso, leche de su elección, caramelo, cold foam y hielo."],
+["Mokaccino",100,"Shot espresso, leche de su elección, chocolate amargo, cold foam y hielo."],
+["Dirty Matcha",115,"Shot espresso, coco, matcha, cold foam y hielo."],
+["Cold Brew",100,"Azúcar morena, canela, hielo y cold foam."]]],
+["🍓","Sin café","",[
+["Té negro con limón",30,""],
+["Agua natural 1 lt",20,""],
+["Chai Latte",100,"Té chai, leche de su elección, endulzante y hielo."],
+["Matcha Strawberry",115,"Matcha, leche de coco, fresa, cold foam y hielo."],
+["Coconut Matcha",100,"Matcha, leche de coco, cold foam y hielo."],
+["Pink Drink",75,"Bebida de fresas y coco con hielo."],
+["Refresher Mango Dragon Fruit",85,"Por temporada."],
+["Dragon Drink",85,"Por temporada. Bebida de dragon fruit y coco, con hielo."],
+["Refresher Strawberry",75,""],
+["Refresher Berries",75,""]]],
+["🍌","Licuados","",[
+["Chocoberry",140,"Mix de berrys, proteína de chocolate, plátano, avena y leche."],
+["Chocobanana",140,"Plátano, proteína de chocolate, avena, pasas y leche."],
+["Pink Shake",140,"Fresa, avena, leche, canela y proteína de vainilla."],
+["Napolitano",140,"Fresa, avena, proteína de napolitano y leche."],
+["Banana Shake",140,"Plátano, avena, canela, proteína de vainilla, pasas y leche."],
+["Energy Shake",140,"Fresa, plátano, avena, leche y proteína de vainilla."]]],
+["💪","Entreno","Proteína: vainilla, chocolate, napolitano y Oreo. Indícalo en las notas. ",[
+["Pre-entreno",75,"Agua tónica, scoop de pre-entreno."],
+["Aminoácidos",75,"Agua tónica, scoop de aminoácidos."],
+["Protein Shake",95,"Agua o leche (a elegir), scoop de proteína isolada de suero de leche, shot espresso y hielo."]]],
+["➕","Extras","Leche a elegir sin costo extra: entera, deslactosada, almendra, coco y avena. ",[
+["Pechuga extra (poke, ensalada, wrap)",30,""],
+["Complemento extra",10,""],
+["Aderezo extra",10,""],
+["Shot espresso",15,""],
+["Scoop pre-entreno extra",35,""],
+["Scoop aminoácidos extra",35,""],
+["Scoop proteína extra",45,""],
+["Scoop creatina",30,""],
+["Combo: té negro + galleta",40,"Agrégalo a tu poke, wrap, ensalada o sandwich."]]]
+];
+const CB="8-8",PH="526531030142",C={};let cur=0;
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const m=n=>"$"+n.toFixed(2);
+const it=id=>{const[a,b]=id.split("-");return{c:D[a][1],...Object.fromEntries([["n",D[a][3][b][0]],["p",D[a][3][b][1]]])}};
+function nav(){$("#nv").innerHTML=D.map((d,i)=>`<button data-i="${i}" class="${i==cur?"on":""}">${d[0]} ${d[1]}</button>`).join("");
+$$("#nv button").forEach(b=>b.onclick=()=>{cur=+b.dataset.i;nav();list();b.scrollIntoView({inline:"center",block:"nearest"});scrollTo({top:0,behavior:"smooth"})})}
+function ctl(id){const q=C[id]||0;return q?`<button class="q" data-d="${id}" aria-label="Quitar">−</button><span class="n" id="n${id}">${q}</span><button class="q" data-a="${id}" aria-label="Agregar">+</button>`:`<button class="add" data-a="${id}">Agregar</button>`}
+function list(){const d=D[cur];
+$("#ls").innerHTML=(d[2]?`<div class="note"><span>${d[2]}</span>${d[2].startsWith("Hazlo")?`<button data-a="${CB}">+ Combo $40</button>`:""}</div>`:"")+
+d[3].map((x,j)=>{const id=cur+"-"+j;return`<div class="it" style="--i:${j}"><div><h3>${x[0]}</h3>${x[2]?`<p>${x[2]}</p>`:""}<div class="pr">${m(x[1])}</div></div><div class="ctl" id="c${id}">${ctl(id)}</div></div>`}).join("");
+bind()}
+function bind(){$$("[data-a]").forEach(b=>b.onclick=()=>chg(b.dataset.a,1));$$("[data-d]").forEach(b=>b.onclick=()=>chg(b.dataset.d,-1))}
+function chg(id,v){C[id]=Math.max(0,(C[id]||0)+v);if(!C[id])delete C[id];
+const e=$("#c"+id);if(e){e.innerHTML=ctl(id);const n=e.querySelector(".n");n&&n.classList.add("bump");bind()}
+upd()}
+function upd(){let q=0,t=0;for(const id in C){q+=C[id];t+=C[id]*it(id).p}
+$("#fc").textContent=q+(q==1?" producto":" productos")+" · Ver pedido";$("#ft").textContent=m(t);$("#fab").classList.toggle("show",q>0);$("#tt").textContent=m(t);
+$("#ct").innerHTML=q?Object.keys(C).map(id=>{const x=it(id);return`<div class="ln"><div><b>${x.n}</b><div style="font-size:12.5px;color:var(--mu)">${x.c} · ${m(x.p)}</div></div><div class="ctl"><button class="q" data-d="${id}">−</button><span class="n">${C[id]}</span><button class="q" data-a="${id}">+</button></div></div>`}).join(""):'<div class="em">Aún no agregas nada. Elige algo del menú.</div>';
+bind();if(!q)$("#sh").classList.remove("open")}
+$("#fab").onclick=()=>$("#sh").classList.add("open");
+$("#cl").onclick=()=>$("#sh").classList.remove("open");
+$("#sh").onclick=e=>{if(e.target.id=="sh")$("#sh").classList.remove("open")};
+$("#send").onclick=()=>{const ids=Object.keys(C);if(!ids.length)return;let t=0;
+let s="Hola Kaleo, quiero hacer este pedido:\n\n"+ids.map(id=>{const x=it(id),l=C[id]*x.p;t+=l;return`• ${C[id]}x ${x.c==="Extras"?"":x.c+" "}${x.n} – ${m(l)}`}).join("\n")+`\n\nTotal: ${m(t)}\nEntrega: ${$("#tp").value}`;
+const n=$("#nm").value.trim(),o=$("#nt").value.trim();if(n)s+="\nNombre: "+n;if(o)s+="\nNotas: "+o;
+window.open("https://wa.me/"+PH+"?text="+encodeURIComponent(s),"_blank")};
+nav();list();upd();
+</script></body></html>
